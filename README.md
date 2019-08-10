@@ -10,7 +10,9 @@
 `$ npm i`
 
 ## Configuring
-Edit the config.json file to fit your needs.
+`$ cp config.json customConfig.json`
+
+Edit the customConfig.json file to fit your needs.
 
 ## Using
 `$ node main.js`

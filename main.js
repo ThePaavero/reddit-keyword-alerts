@@ -1,6 +1,6 @@
 const axios = require('axios')
 const clear = require('clear')
-const config = require('./config')
+const config = require('./customConfig')
 require('colors')
 
 const url = 'https://www.reddit.com/r/all.json'
