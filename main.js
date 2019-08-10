@@ -6,7 +6,7 @@ require('colors')
 const url = 'https://www.reddit.com/r/all.json'
 
 
-const init = (config) => {
+const init = () => {
 
   axios.get(url)
 
@@ -43,10 +43,12 @@ const init = (config) => {
         console.log(('Link: ' + (match.url).cyan + '"'))
         console.log('-----------------------------------------------------------')
       })
+
+      setTimeout(init, config.refreshIntervalInSeconds * 1000)
     })
     .catch(error => {
       console.log('ERROR: ' + error.toString())
     })
 }
 
-init(config)
+init()

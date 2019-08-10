@@ -26,5 +26,6 @@
         "\uD83D\uDD25"
       ]
     }
-  ]
+  ],
+  "refreshIntervalInSeconds": 5
 }
