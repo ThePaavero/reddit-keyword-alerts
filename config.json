@@ -8,11 +8,22 @@
       ]
     },
     {
-      "title": "Mercedes-Benz",
+      "title": "Dogs",
       "keywords": [
-        "mercedes",
-        "c250",
-        "Prince Andrew"
+        "dog",
+        "puppy"
+      ]
+    },
+    {
+      "title": "TIL",
+      "keywords": [
+        "TIL"
+      ]
+    },
+    {
+      "title": "Flame Emoji",
+      "keywords": [
+        "\uD83D\uDD25"
       ]
     }
   ]

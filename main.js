@@ -1,8 +1,7 @@
 const axios = require('axios')
-const moment = require('moment')
-const colors = require('colors')
 const _ = require('lodash')
 const config = require('./config')
+require('colors')
 
 const url = 'https://www.reddit.com/r/all.json'
 
@@ -22,14 +21,32 @@ const init = (config) => {
             if (!item.data.title.includes(word)) {
               return
             }
-            matches.push(item.data)
+            matches.push({
+              setName: set.title,
+              matchedWord: word,
+              postTitle: item.data.title,
+              url: 'https://www.reddit.com' + item.data.permalink,
+            })
           })
         })
       })
 
-      console.log(matches)
+      if (matches.length < 1) {
+        console.log('No matches.'.red)
+      }
+
+      matches.forEach(match => {
+        console.log('MATCH:'.bgGreen.black)
+        console.log(('Set "' + match.setName + '"').bgWhite.black)
+        console.log(('Matched word "' + match.matchedWord + '"').bgWhite.black)
+        console.log(('Post title "' + match.postTitle + '"').green)
+        console.log(('Link: ' + (match.url).cyan + '"'))
+        console.log('-----------------------------------------------------------')
+      })
     })
-    .catch(console.log)
+    .catch(error => {
+      console.log('ERROR: ' + error.toString())
+    })
 }
 
 init(config)
