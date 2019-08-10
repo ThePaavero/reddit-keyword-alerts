@@ -1,6 +1,5 @@
 const axios = require('axios')
 const clear = require('clear')
-const _ = require('lodash')
 const config = require('./config')
 require('colors')
 
