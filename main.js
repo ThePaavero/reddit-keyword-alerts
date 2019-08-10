@@ -1,9 +1,22 @@
 const axios = require('axios')
+const clear = require('clear')
 const _ = require('lodash')
 const config = require('./config')
 require('colors')
 
 const url = 'https://www.reddit.com/r/all.json'
+let previousMatchArray = []
+
+const printResults = (matches) => {
+  matches.forEach(match => {
+    console.log('MATCH:'.bgGreen.black)
+    console.log(('Set "' + match.setName + '"').bgWhite.black)
+    console.log(('Matched word "' + match.matchedWord + '"').bgWhite.black)
+    console.log(('Post title "' + match.postTitle + '"').green)
+    console.log(('Link: ' + (match.url).cyan + '"'))
+    console.log('-----------------------------------------------------------')
+  })
+}
 
 
 const init = () => {
@@ -35,14 +48,22 @@ const init = () => {
         console.log('No matches.'.red)
       }
 
-      matches.forEach(match => {
-        console.log('MATCH:'.bgGreen.black)
-        console.log(('Set "' + match.setName + '"').bgWhite.black)
-        console.log(('Matched word "' + match.matchedWord + '"').bgWhite.black)
-        console.log(('Post title "' + match.postTitle + '"').green)
-        console.log(('Link: ' + (match.url).cyan + '"'))
-        console.log('-----------------------------------------------------------')
-      })
+      clear()
+
+      if (matches.length === previousMatchArray.length) { // @todo Compare better, idiot.
+        printResults(matches)
+        console.log('NO NEW MATCHES'.red)
+      } else {
+        printResults(matches)
+        console.log('NEW MATCHES!'.green)
+      }
+
+      setTimeout(() => {
+        clear()
+        printResults(matches)
+      }, 1000)
+
+      previousMatchArray = matches
 
       setTimeout(init, config.refreshIntervalInSeconds * 1000)
     })
